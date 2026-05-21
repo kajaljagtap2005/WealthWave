@@ -67,11 +67,11 @@ router.post("/signup", async(req,res)=>{
 
         const insertQuery = `
 
-            INSERT INTO users(username,email,password)
+    INSERT INTO users(id,username,email,password)
 
-            VALUES(?,?,?)
+    VALUES(NULL,?,?,?)
 
-        `;
+`;
 
 
         db.query(
