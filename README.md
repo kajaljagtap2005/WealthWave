@@ -1,104 +1,168 @@
-# 💰 WealthWave – Personal Finance Tracker
+# 💰 WealthWave – Smart Personal Finance Tracker
 
-WealthWave is a modern and responsive Personal Finance Tracker web application that helps users manage their expenses, track budgets, and visualize spending patterns professionally.
+WealthWave is a modern full-stack Personal Finance Tracker web application that helps users manage their daily expenses, monitor budgets, and visualize financial data through an interactive dashboard.
 
-This project is designed using modern frontend technologies with an attractive UI, responsive layouts, authentication system, and backend database integration.
+Designed with a professional glassmorphism UI, secure authentication system, cloud database integration, and responsive layouts, WealthWave delivers a complete real-world finance management experience.
+
+---
+
+# 🌐 Live Demo
+
+## 🚀 Frontend (Netlify)
+https://wealthwavefintracker.netlify.app/
+
+## ⚙️ Backend API (Render)
+https://wealthwave-backend-dbxv.onrender.com
+
+---
+
+# 📸 Project Preview
+
+## 🏠 Landing Page
+- Modern Hero Section
+- Responsive Navbar
+- Attractive UI Design
+
+## 📊 Dashboard
+- Expense Tracking
+- Budget Analytics
+- Charts & Insights
+
+## 🔐 Authentication
+- Signup System
+- Login System
+- Secure Password Encryption
 
 ---
 
 # 🚀 Features
 
-## 🔐 Authentication System
+# 🔐 Authentication System
 - User Signup
 - User Login
-- Secure Password Storage using bcrypt
-- Logout Functionality
-- User Session Management
+- Secure Password Hashing using bcrypt
+- Backend Authentication APIs
+- Protected User Data
+- Dynamic Username Display
+- Session Management using LocalStorage
 
 ---
 
-## 💳 Expense Management
+# 💳 Expense Management
 - Add Expenses
 - Edit Expenses
 - Delete Expenses
-- Expense Categories
-- Date-wise Expense Tracking
-- Dynamic Expense List
+- Real-Time Expense Updates
+- Category-wise Expense Tracking
+- Date-wise Expense Management
+- Dynamic Expense List Rendering
 
 ---
 
-## 📊 Budget Management
+# 📊 Budget Management
 - Set Monthly Budget
 - Remaining Budget Calculation
-- Real-Time Updates
+- Budget Usage Monitoring
+- Real-Time Financial Updates
 
 ---
 
-## 📈 Data Visualization
+# 📈 Analytics Dashboard
 - Interactive Expense Charts
-- Category-wise Expense Distribution
-- Spending Analytics Dashboard
+- Category-wise Spending Analytics
+- Financial Insights Dashboard
+- Data Visualization using Charts
 
 ---
 
-## 🌙 Dark / Light Mode
-- Theme Toggle Option
-- Smooth UI Transitions
-- Theme Saved using LocalStorage
+# 🌙 Dark / Light Theme
+- Theme Toggle Functionality
+- Smooth Theme Transition
+- LocalStorage Theme Saving
+- Modern UI Experience
 
 ---
 
-## 👤 User Profile System
-- Dynamic Username Display
-- Profile Dropdown Menu
-- Edit Profile Option
+# 👤 User Profile System
 - Personalized Dashboard
+- Username Greeting
+- User-Based Experience
+- Logout Functionality
 
 ---
 
-## 📱 Responsive Design
-Fully responsive for:
-- Mobile Devices
-- Tablets
-- Laptops
-- Desktop Screens
+# 📱 Fully Responsive Design
+Optimized for:
+- 📱 Mobile Devices
+- 📲 Tablets
+- 💻 Laptops
+- 🖥️ Desktop Screens
 
 ---
 
-## 🎨 Modern UI/UX
-- Professional Dashboard Layout
+# 🎨 Modern UI/UX
 - Glassmorphism Design
-- Attractive Hero Section
-- Animated Components
+- Professional Dashboard Layout
 - Smooth Hover Effects
-- Responsive Navigation Bar
+- Animated Components
+- Clean Typography
+- Attractive Color Palette
+- Responsive Navigation
 
 ---
 
-## 💾 Database Integration
-- MySQL Database Connected
-- User Data Stored Securely
-- Backend API Integration
+# ☁️ Full-Stack Deployment
+WealthWave is deployed using modern cloud platforms:
+
+| Service | Platform |
+|----------|----------|
+| Frontend | Netlify |
+| Backend | Render |
+| Database | Railway MySQL |
 
 ---
 
 # 🛠️ Tech Stack
 
-## Frontend
+## 🎨 Frontend
 - HTML5
 - CSS3
 - JavaScript (ES6)
 - Bootstrap 5
 
-## Backend
+---
+
+## ⚙️ Backend
 - Node.js
 - Express.js
 
-## Database
-- MySQL
+---
 
-## Other Tools
+## 🗄️ Database
+- MySQL
+- Railway Cloud Database
+
+---
+
+## 🔐 Authentication & Security
+- bcryptjs
+- REST API
+- Express Middleware
+- CORS
+
+---
+
+## ☁️ Deployment Platforms
+- Netlify
+- Render
+- Railway
+
+---
+
+## 🧰 Development Tools
 - Git & GitHub
+- VS Code
+- Postman
 - XAMPP
 - phpMyAdmin
 
@@ -114,16 +178,21 @@ WealthWave/
 │
 ├── backend/
 │   ├── routes/
+│   │   └── authRoutes.js
+│   │
 │   ├── db.js
 │   ├── server.js
-│   └── package.json
+│   ├── .env
+│   ├── package.json
+│   └── package-lock.json
 │
 ├── css/
+│
 ├── js/
 │
 ├── index.html
-├── login.html
 ├── signup.html
+├── login.html
 ├── dashboard.html
 │
-└── README.md
+├── README.md
