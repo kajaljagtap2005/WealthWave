@@ -27,7 +27,7 @@ router.post("/signup", async (req, res) => {
 
     // CHECK IF EMAIL ALREADY EXISTS
 
-    const checkQuery = "SELECT * FROM users_new WHERE email=?";
+    const checkQuery = "SELECT * FROM users_final WHERE email=?";
 
     db.query(checkQuery, [email], async (err, result) => {
 
@@ -60,7 +60,7 @@ router.post("/signup", async (req, res) => {
             // INSERT USER
 
             const insertQuery = `
-                INSERT INTO users_new(username, email, password)
+                INSERT INTO users_final(username, email, password)
                 VALUES (?, ?, ?)
             `;
 
