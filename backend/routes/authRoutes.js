@@ -11,101 +11,102 @@ const bcrypt = require("bcryptjs");
 // SIGNUP API
 // ============================
 
-router.post("/signup", async(req,res)=>{
+router.post("/signup", async (req, res) => {
 
-    const {username,email,password} = req.body;
-
+    const { username, email, password } = req.body;
 
     // CHECK EMPTY FIELDS
 
-    if(!username || !email || !password){
+    if (!username || !email || !password) {
 
         return res.status(400).json({
-
-            message:"All fields are required"
-
+            message: "All fields are required"
         });
 
     }
 
+    // CHECK IF EMAIL ALREADY EXISTS
 
-    // CHECK EMAIL EXISTS
+    const checkQuery = "SELECT * FROM users_new WHERE email=?";
 
-    const checkQuery = "SELECT * FROM users WHERE email=?";
+    db.query(checkQuery, [email], async (err, result) => {
 
+        if (err) {
 
-    db.query(checkQuery,[email], async(err,result)=>{
-
-        if(err){
+            console.log(err);
 
             return res.status(500).json({
-
-                message:"Database Error"
-
+                message: "Database Error"
             });
 
         }
 
+        // EMAIL EXISTS
 
-        if(result.length > 0){
+        if (result.length > 0) {
 
             return res.status(400).json({
-
-                message:"Email already exists"
-
+                message: "Email already exists"
             });
 
         }
 
+        try {
 
-        // HASH PASSWORD
+            // HASH PASSWORD
 
-        const hashedPassword = await bcrypt.hash(password,10);
+            const hashedPassword = await bcrypt.hash(password, 10);
 
+            // INSERT USER
 
-        // INSERT USER
+            const insertQuery = `
+                INSERT INTO users_new(username, email, password)
+                VALUES (?, ?, ?)
+            `;
 
-        const insertQuery = `
+            db.query(
 
-    INSERT INTO users(id,username,email,password)
+                insertQuery,
 
-    VALUES(NULL,?,?,?)
+                [username, email, hashedPassword],
 
-`;
+                (err, data) => {
 
+                    if (err) {
 
-        db.query(
+                        console.log(err);
 
-            insertQuery,
+                        return res.status(500).json({
+                            message: "Signup Failed"
+                        });
 
-            [username,email,hashedPassword],
+                    }
 
-            (err,data)=>{
+                    return res.status(201).json({
+                        message: "Signup Successful"
+                    });
 
-                if(err){
+                }
 
-                 console.log(err);
+            );
 
-                 return res.status(500).json({
+        } catch (error) {
 
-                 message:"Signup Failed"
+            console.log(error);
 
+            return res.status(500).json({
+                message: "Server Error"
             });
 
         }
-                res.status(201).json({
-
-                    message:"Signup Successful"
-
-                });
-
-            }
-
-        );
 
     });
 
 });
 
+
+// ============================
+// EXPORT ROUTER
+// ============================
 
 module.exports = router;
