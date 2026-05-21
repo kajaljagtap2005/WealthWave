@@ -84,15 +84,15 @@ router.post("/signup", async(req,res)=>{
 
                 if(err){
 
-                    return res.status(500).json({
+                 console.log(err);
 
-                        message:"Signup Failed"
+                 return res.status(500).json({
 
-                    });
+                 message:"Signup Failed"
 
-                }
+            });
 
-
+        }
                 res.status(201).json({
 
                     message:"Signup Successful"
