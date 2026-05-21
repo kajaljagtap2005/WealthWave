@@ -1,14 +1,19 @@
 const mysql = require("mysql2");
 
+require("dotenv").config();
+
+
 const connection = mysql.createConnection({
 
-    host:"localhost",
+    host:process.env.DB_HOST,
 
-    user:"root",
+    user:process.env.DB_USER,
 
-    password:"",
+    password:process.env.DB_PASSWORD,
 
-    database:"wealthwave"
+    database:process.env.DB_NAME,
+
+    port:process.env.DB_PORT
 
 });
 
@@ -17,7 +22,7 @@ connection.connect((err)=>{
 
     if(err){
 
-        console.log(err);
+        console.log("Database Error:",err);
 
     }
 
