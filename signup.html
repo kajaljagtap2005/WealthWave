@@ -117,7 +117,7 @@
 
             <a class="navbar-brand fw-bold" href="index.html">
 
-                FinTrack
+                WealthWave
 
             </a>
 
@@ -147,11 +147,29 @@
 
         <form id="signupForm">
 
-            <input type="text" id="name" class="form-control" placeholder="Full Name" required>
+            <input 
+                type="text" 
+                id="name" 
+                class="form-control" 
+                placeholder="Full Name" 
+                required
+            >
 
-            <input type="email" id="email" class="form-control" placeholder="Email Address" required>
+            <input 
+                type="email" 
+                id="email" 
+                class="form-control" 
+                placeholder="Email Address" 
+                required
+            >
 
-            <input type="password" id="password" class="form-control" placeholder="Password" required>
+            <input 
+                type="password" 
+                id="password" 
+                class="form-control" 
+                placeholder="Password" 
+                required
+            >
 
             <button type="submit" class="btn-signup">
 
@@ -175,7 +193,7 @@
 
     </div>
 
-   <script>
+<script>
 
 const signupForm = document.getElementById("signupForm");
 
@@ -226,12 +244,21 @@ signupForm.addEventListener("submit", async function(e){
         const data = await response.json();
 
 
-        alert(data.message);
-
-
         if(response.ok){
 
+            alert("Signup Successful!");
+
+            // SAVE USERNAME
+
+            localStorage.setItem("username", username);
+
+            // REDIRECT TO LOGIN
+
             window.location.href = "login.html";
+
+        }else{
+
+            alert(data.message);
 
         }
 
@@ -248,7 +275,7 @@ signupForm.addEventListener("submit", async function(e){
 });
 
 </script>
-    
+
 
 </body>
 

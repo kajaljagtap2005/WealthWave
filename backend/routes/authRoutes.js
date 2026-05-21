@@ -1,9 +1,7 @@
 const express = require("express");
-
 const router = express.Router();
 
 const db = require("../db");
-
 const bcrypt = require("bcryptjs");
 
 
@@ -15,8 +13,6 @@ router.post("/signup", async (req, res) => {
 
     const { username, email, password } = req.body;
 
-    // CHECK EMPTY FIELDS
-
     if (!username || !email || !password) {
 
         return res.status(400).json({
@@ -24,8 +20,6 @@ router.post("/signup", async (req, res) => {
         });
 
     }
-
-    // CHECK IF EMAIL ALREADY EXISTS
 
     const checkQuery = "SELECT * FROM users_final WHERE email=?";
 
@@ -41,8 +35,6 @@ router.post("/signup", async (req, res) => {
 
         }
 
-        // EMAIL EXISTS
-
         if (result.length > 0) {
 
             return res.status(400).json({
@@ -53,15 +45,11 @@ router.post("/signup", async (req, res) => {
 
         try {
 
-            // HASH PASSWORD
-
             const hashedPassword = await bcrypt.hash(password, 10);
 
-            // INSERT USER
-
             const insertQuery = `
-                INSERT INTO users_final(username, email, password)
-                VALUES (?, ?, ?)
+                INSERT INTO users_final(username,email,password)
+                VALUES(?,?,?)
             `;
 
             db.query(
@@ -106,7 +94,65 @@ router.post("/signup", async (req, res) => {
 
 
 // ============================
-// EXPORT ROUTER
+// LOGIN API
 // ============================
+
+router.post("/login", (req, res) => {
+
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+
+        return res.status(400).json({
+            message: "All fields are required"
+        });
+
+    }
+
+    const loginQuery = "SELECT * FROM users_final WHERE email=?";
+
+    db.query(loginQuery, [email], async (err, result) => {
+
+        if (err) {
+
+            console.log(err);
+
+            return res.status(500).json({
+                message: "Database Error"
+            });
+
+        }
+
+        if (result.length === 0) {
+
+            return res.status(400).json({
+                message: "Invalid Email or Password"
+            });
+
+        }
+
+        const user = result[0];
+
+        const isMatch = await bcrypt.compare(password, user.password);
+
+        if (!isMatch) {
+
+            return res.status(400).json({
+                message: "Invalid Email or Password"
+            });
+
+        }
+
+        return res.status(200).json({
+
+            message: "Login Successful",
+
+            username: user.username
+
+        });
+
+    });
+
+});
 
 module.exports = router;
